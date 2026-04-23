@@ -109,16 +109,35 @@ nav {
 .hero {
   min-height: 100vh;
   padding-top: 56px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
   border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('Gemini_Generated_Image_wazzmpwazzmpwazz.png');
+  background-size: cover;
+  background-position: center top;
+  filter: saturate(0.55) brightness(0.3);
+  z-index: 0;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(10,10,10,0.97) 45%, rgba(10,10,10,0.45) 100%);
+  z-index: 1;
 }
 .hero-left {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 80px 60px 80px 5%;
-  border-right: 1px solid var(--border);
+  max-width: 600px;
 }
 .eyebrow {
   display: flex;
@@ -201,34 +220,22 @@ nav {
 .price-hint del { color: var(--text3); }
 .price-hint strong { color: var(--accent); font-weight: 600; }
 
-.hero-right {
-  position: relative;
-  overflow: hidden;
-  padding: 0;
-}
-.hero-right-bg {
-  position: absolute;
-  inset: 0;
-  background-image: url('Gemini_Generated_Image_wazzmpwazzmpwazz.png');
-  background-size: cover;
-  background-position: center top;
-  filter: saturate(0.45) brightness(0.32);
-  z-index: 0;
-}
-.hero-right-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to right, var(--bg) 0%, rgba(10,10,10,0.15) 100%);
-  z-index: 1;
-}
-.hero-right-content {
+.hero-stats-strip {
   position: relative;
   z-index: 2;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 80px 5% 80px 60px;
-  gap: 16px;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 48px;
+  align-self: flex-start;
+  width: 100%;
+  max-width: 480px;
+}
+.hero-stats-strip .stat-cell {
+  flex: 1;
+  background: rgba(10,10,10,0.8);
+  backdrop-filter: blur(8px);
 }
 .stat-row {
   display: grid;
@@ -735,9 +742,8 @@ footer {
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
-  .hero { grid-template-columns: 1fr; }
-  .hero-left { padding: 60px 5%; border-right: none; border-bottom: 1px solid var(--border); }
-  .hero-right { padding: 48px 5%; }
+  .hero-left { padding: 60px 5%; }
+  .hero-stats-strip { max-width: 100%; }
   .pain-section { grid-template-columns: 1fr; }
   .pain-left { padding: 60px 5%; border-right: none; border-bottom: 1px solid var(--border); }
   .pain-right { padding: 40px 5%; }
@@ -784,6 +790,8 @@ footer {
 
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
   <div class="hero-left">
     <div class="eyebrow">
       <div class="eyebrow-dot"></div>
@@ -796,13 +804,7 @@ footer {
       <a href="#agentes" class="btn-ghost">Ver os Agentes ↓</a>
     </div>
     <p class="price-hint">12x de <strong>R$13,14</strong> &nbsp;·&nbsp; ou <strong>R$127,00 à vista</strong> &nbsp;·&nbsp; <del>de R$297</del></p>
-  </div>
-
-  <div class="hero-right">
-    <div class="hero-right-bg"></div>
-    <div class="hero-right-overlay"></div>
-    <div class="hero-right-content">
-    <div class="stat-row">
+    <div class="hero-stats-strip">
       <div class="stat-cell">
         <div class="stat-num"><span class="accent">12</span></div>
         <div class="stat-label">Agentes prontos</div>
@@ -820,34 +822,6 @@ footer {
         <div class="stat-label">Acesso após compra</div>
       </div>
     </div>
-
-    <div class="terminal-block">
-      <div class="terminal-bar">
-        <div class="terminal-dot" style="background:#ff5f57"></div>
-        <div class="terminal-dot" style="background:#febc2e"></div>
-        <div class="terminal-dot" style="background:#28c840"></div>
-        <span class="terminal-title">agentes.config — IA para Arquitetos</span>
-      </div>
-      <div class="terminal-body">
-        <div><span class="comment">// seu escritório automatizado</span></div>
-        <div><span class="cmd">const</span> agentes = {</div>
-        <div>&nbsp;&nbsp;aurora: <span class="str">"Analista de Briefings"</span>,</div>
-        <div>&nbsp;&nbsp;lia: <span class="str">"Social Media"</span>,</div>
-        <div>&nbsp;&nbsp;carlos: <span class="str">"Gerador de Memoriais"</span>,</div>
-        <div>&nbsp;&nbsp;bruno: <span class="str">"Consultor de Orçamentos"</span>,</div>
-        <div>&nbsp;&nbsp;<span class="comment">// + 8 agentes especializados...</span></div>
-        <div>}</div>
-        <div>&nbsp;</div>
-        <div><span class="cmd">→</span> <span class="val">copie e cole no ChatGPT</span> <span class="cursor"></span></div>
-      </div>
-    </div>
-
-    <div class="badge-row">
-      <div class="badge-item"><span class="check">✓</span> 100% prontos pra uso — sem configuração técnica</div>
-      <div class="badge-item"><span class="check">✓</span> Basta copiar e colar no ChatGPT</div>
-      <div class="badge-item"><span class="check">✓</span> Acesso imediato + área de membros organizada</div>
-    </div>
-    </div><!-- /hero-right-content -->
   </div>
 </section>
 

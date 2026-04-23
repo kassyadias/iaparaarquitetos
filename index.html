@@ -202,6 +202,28 @@ nav {
 .price-hint strong { color: var(--accent); font-weight: 600; }
 
 .hero-right {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+.hero-right-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('Gemini_Generated_Image_wazzmpwazzmpwazz.png');
+  background-size: cover;
+  background-position: center top;
+  filter: saturate(0.45) brightness(0.32);
+  z-index: 0;
+}
+.hero-right-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, var(--bg) 0%, rgba(10,10,10,0.15) 100%);
+  z-index: 1;
+}
+.hero-right-content {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -217,8 +239,9 @@ nav {
   margin-bottom: 4px;
 }
 .stat-cell {
-  background: var(--bg);
+  background: rgba(10,10,10,0.72);
   padding: 22px 24px;
+  backdrop-filter: blur(4px);
 }
 .stat-num {
   font-family: var(--mono);
@@ -237,7 +260,8 @@ nav {
   letter-spacing: 0.08em;
 }
 .terminal-block {
-  background: var(--bg2);
+  background: rgba(17,17,17,0.78);
+  backdrop-filter: blur(4px);
   border: 1px solid var(--border);
   border-radius: 4px;
   overflow: hidden;
@@ -278,7 +302,8 @@ nav {
   align-items: center;
   gap: 12px;
   padding: 12px 16px;
-  background: var(--bg2);
+  background: rgba(17,17,17,0.75);
+  backdrop-filter: blur(4px);
   border: 1px solid var(--border);
   border-radius: 3px;
   font-size: 13px;
@@ -774,6 +799,9 @@ footer {
   </div>
 
   <div class="hero-right">
+    <div class="hero-right-bg"></div>
+    <div class="hero-right-overlay"></div>
+    <div class="hero-right-content">
     <div class="stat-row">
       <div class="stat-cell">
         <div class="stat-num"><span class="accent">12</span></div>
@@ -819,6 +847,7 @@ footer {
       <div class="badge-item"><span class="check">✓</span> Basta copiar e colar no ChatGPT</div>
       <div class="badge-item"><span class="check">✓</span> Acesso imediato + área de membros organizada</div>
     </div>
+    </div><!-- /hero-right-content -->
   </div>
 </section>
 
